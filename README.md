@@ -1,15 +1,15 @@
-# Pace Rastreador
+# Pace Tracker
 
-Plataforma web para treinamento de corrida e preparação para maratonas.
+Web platform for running training and marathon preparation.
 
-## Funcionalidades
-- Rastreamento de pace
-- Planejamento de treinos
-- Estatísticas de corrida
-- Preparação para maratona
+## Features
+- Pace tracking
+- Training planning
+- Running statistics
+- Marathon preparation
 
-## Tecnologias
+## Technologies
 - Python
 
-## Objetivo
-Criar uma plataforma simples e eficiente para corredores acompanharem evolução e desempenho.
+## Objective
+Create a simple and efficient platform for runners to track progress and performance.
