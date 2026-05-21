@@ -1,15 +1,16 @@
 # Pace Tracker
 
-Web platform for running training and marathon preparation.
+Python application for pace and running time calculations.
 
 ## Features
-- Pace tracking
-- Training planning
-- Running statistics
-- Marathon preparation
+- Pace calculation
+- Estimated running time calculation
+- Pace formatting
+- Input validation
+- Error handling
 
 ## Technologies
 - Python
 
 ## Objective
-Create a simple and efficient platform for runners to track progress and performance.
+Practice Python programming while building a useful tool for runners and marathon training.
