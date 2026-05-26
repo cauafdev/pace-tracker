@@ -1,4 +1,4 @@
-historico = []
+import json
 
 
 def calcular_pace():
@@ -92,6 +92,10 @@ def formatar_pace(pace):
 
 def mostrar_historico():
 
+    with open("historico.json", "r") as arquivo:
+
+        historico = json.load(arquivo)
+
     if not historico:
         print("Nenhuma corrida registrada.")
         return
@@ -111,11 +115,21 @@ def mostrar_historico():
 
 def salvar_corrida(distancia, tempo, pace):
 
-    historico.append({
+    corrida = {
         "distancia": distancia,
         "tempo": tempo,
         "pace": formatar_pace(pace)
-    })
+    }
+
+    with open("historico.json", "r") as arquivo:
+
+        historico = json.load(arquivo)
+
+    historico.append(corrida)
+
+    with open("historico.json", "w") as arquivo:
+
+        json.dump(historico, arquivo, indent=4)
 
 
 while True:
