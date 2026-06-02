@@ -1,6 +1,19 @@
 import json
 
 
+def carregar_conhecimento():
+
+    with open(
+        "C:/Users/User/Desktop/workspace/projeto1/conhecimento.json",
+        "r",
+        encoding="utf-8"
+    ) as arquivo:
+
+        conhecimento = json.load(arquivo)
+
+    return conhecimento
+
+
 def calcular_pace():
 
     print("Calcule seu pace: ")
@@ -92,7 +105,10 @@ def formatar_pace(pace):
 
 def mostrar_historico():
 
-    with open("historico.json", "r") as arquivo:
+    with open(
+        "C:/Users/User/Desktop/workspace/projeto1/historico.json",
+        "r"
+    ) as arquivo:
 
         historico = json.load(arquivo)
 
@@ -121,15 +137,41 @@ def salvar_corrida(distancia, tempo, pace):
         "pace": formatar_pace(pace)
     }
 
-    with open("historico.json", "r") as arquivo:
+    with open(
+        "C:/Users/User/Desktop/workspace/projeto1/historico.json",
+        "r"
+    ) as arquivo:
 
         historico = json.load(arquivo)
 
     historico.append(corrida)
 
-    with open("historico.json", "w") as arquivo:
+    with open(
+        "C:/Users/User/Desktop/workspace/projeto1/historico.json",
+        "w"
+    ) as arquivo:
 
         json.dump(historico, arquivo, indent=4)
+
+
+def chatbot():
+
+    print("=====================================")
+    print("        CHATBOT DE CORRIDA")
+    print("=====================================")
+
+    print("Aqui você pode:")
+
+    print("• Tirar dúvidas sobre corrida")
+    print("• Aprender sobre treinamento")
+    print("• Aprender sobre nutrição")
+    print("• Comparar resultados")
+    print("• Analisar suas corridas")
+
+    pergunta = input("Faça sua pergunta: ")
+
+    print("Você perguntou:")
+    print(pergunta)
 
 
 while True:
@@ -137,7 +179,9 @@ while True:
     print("1 - Calcular pace")
     print("2 - Calcular tempo")
     print("3 - Mostrar Histórico")
-    print("4 - Sair")
+    print("4 - Chatbot de corrida")
+    print("5 - Sair")
+
     opcao = input("Digite uma opção: ")
 
     if opcao == "1":
@@ -150,7 +194,11 @@ while True:
         mostrar_historico()
 
     elif opcao == "4":
+        chatbot()
+
+    elif opcao == "5":
         print("Programa encerrado")
         break
+
     else:
         print("Opção inválida")
