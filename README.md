@@ -1,74 +1,74 @@
-# Pace Tracker - Chatbot Inteligente de Corrida
+# Pace Tracker - Intelligent Running Chatbot
 
-Assistente de corrida via terminal que combina **calculadora de pace**, **base de conhecimento** e **IA local** para ajudar corredores no dia a dia.
+Terminal-based running assistant that combines a **pace calculator**, **knowledge base** and **local AI** to help runners in their daily routine.
 
-## Funcionalidades
+## Features
 
-**Calculadora de corrida**
-- Calcula pace a partir de distancia e tempo
-- Calcula tempo estimado a partir de pace e distancia
-- Aceita entrada por linguagem natural (ex: `corri 10km em 50min`)
+**Running calculator**
+- Calculates pace from distance and time
+- Calculates estimated time from pace and distance
+- Accepts natural language input (e.g.: `corri 10km em 50min`)
 
-**Chatbot hibrido com IA**
-- Router inteligente que classifica a mensagem do usuario automaticamente
-- Respostas locais para temas de corrida (treino, nutricao, lesoes, aquecimento, etc)
-- IA local via Ollama para conversas abertas e perguntas complexas
-- Fallback automatico quando IA nao esta disponivel
+**Hybrid chatbot with AI**
+- Intelligent router that automatically classifies user messages
+- Local responses for running topics (training, nutrition, injuries, warm-up, etc)
+- Local AI via Ollama for open conversations and complex questions
+- Automatic fallback when AI is not available
 
-**Historico e persistencia**
-- Salva corridas com distancia, tempo e pace em JSON
-- Historico de conversas com data e hora
-- Consulta de estatisticas: pace medio, melhor pace, ultima corrida
-- Modo com/sem historico (escolha do usuario)
+**History and persistence**
+- Saves runs with distance, time and pace in JSON
+- Conversation history with date and time
+- Statistics queries: average pace, best pace, last run
+- Mode with/without history (user's choice)
 
-## Arquitetura
+## Architecture
 
 ```
-Mensagem do usuario
-        |
-    [Router] --- classifica a intencao
-        |
-   .----|-----------|------------|-----------.
-   |              |            |              |
-Calculo       Comando    Conhecimento    Conversa
-(regex)       (stats)      (JSON)       (Ollama IA)
-   |              |            |              |
-   '-------- Resposta ao usuario  -----------'
+User message
+      |
+  [Router] --- classifies intent
+      |
+ .----|-----------|------------|-----------.
+ |              |            |              |
+Calculation  Command    Knowledge     Conversation
+ (regex)     (stats)     (JSON)      (Ollama AI)
+ |              |            |              |
+ '-------- Response to user  -------------'
 ```
 
-| Modulo | Responsabilidade |
+| Module | Responsibility |
 |---|---|
-| `app.py` | Aplicacao principal, menu, chatbot e handlers |
-| `router.py` | Classificacao de mensagens via regex e keywords |
-| `ai_client.py` | Integracao com Ollama (IA local) |
-| `conhecimento.json` | Base de conhecimento sobre corrida (10 temas) |
-| `historico.json` | Registro de corridas do usuario |
-| `conversas.json` | Historico de conversas do chatbot |
+| `app.py` | Main application, menu, chatbot and handlers |
+| `router.py` | Message classification via regex and keywords |
+| `ai_client.py` | Integration with Ollama (local AI) |
+| `conhecimento.json` | Running knowledge base (10 topics) |
+| `historico.json` | User's running log |
+| `conversas.json` | Chatbot conversation history |
 
-## Como usar
+## How to use
 
-**Requisitos:** Python 3.10+
+**Requirements:** Python 3.10+
 
 ```bash
-# Clonar o repositorio
+# Clone the repository
 git clone https://github.com/cauafdev/pace-tracker.git
 cd pace-tracker
 
-# Rodar
+# Run
 python app.py
 ```
 
-**Para ativar a IA local (opcional):**
+**To activate local AI (optional):**
 
 ```bash
-# Instalar Ollama (https://ollama.ai)
+# Install Ollama (https://ollama.ai)
 ollama pull llama3.2:1b
 
-# No app, opcao 6 > Ativar IA
+# In the app, option 6 > Activate AI
 python app.py
 ```
 
-## Exemplos de uso
+## Usage examples
 
 ```
 > corri 10km em 50min
@@ -84,17 +84,17 @@ Seu pace medio e 5:30 min/km (8 corridas).
 O aquecimento antes de correr e fundamental. Faca de 5 a 10 minutos de caminhada leve...
 ```
 
-## Tecnologias
+## Technologies
 
-- **Python** - logica principal e CLI
-- **JSON** - persistencia de dados (sem banco de dados externo)
-- **Ollama + Llama 3.2** - IA local, 100% offline
-- **Regex** - parsing de linguagem natural para extracao de dados de corrida
+- **Python** — core logic and CLI
+- **JSON** — data persistence (no external database)
+- **Ollama + Llama 3.2** — local AI, 100% offline
+- **Regex** — natural language parsing for running data extraction
 
-## Aprendizados
+## Learnings
 
-- Arquitetura hibrida: combinar regras locais com IA
-- Design de router/classificador de intencoes
-- Persistencia de dados com JSON
-- Integracao com LLMs via API REST local
-- Tratamento de entrada do usuario com regex e validacao
+- Hybrid architecture: combining local rules with AI
+- Intent router/classifier design
+- Data persistence with JSON
+- LLM integration via local REST API
+- User input handling with regex and validation
