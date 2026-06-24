@@ -23,5 +23,15 @@
         "distancia": 20.0,
         "tempo": 200.0,
         "pace": "10:00"
+    },
+    {
+        "distancia": 10.0,
+        "tempo": 50.0,
+        "pace": "5:00"
+    },
+    {
+        "distancia": 10.0,
+        "tempo": 5.0,
+        "pace": "0:30"
     }
 ]

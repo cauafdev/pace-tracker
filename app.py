@@ -1,4 +1,7 @@
 import json
+from datetime import datetime
+from router import classificar, extrair_dados_corrida
+from ai_client import AIClient, carregar_config, salvar_config
 
 
 def carregar_conhecimento():
@@ -154,6 +157,183 @@ def salvar_corrida(distancia, tempo, pace):
         json.dump(historico, arquivo, indent=4)
 
 
+def buscar_resposta(pergunta):
+
+    conhecimento = carregar_conhecimento()
+    pergunta_lower = pergunta.lower()
+
+    for topico, dados in conhecimento.items():
+        for palavra in dados["palavras_chave"]:
+            if palavra.lower() in pergunta_lower:
+                return dados["respostas"][0]
+
+    return "Desculpe, não encontrei uma resposta para sua pergunta. Tente perguntar sobre: pace, aquecimento, hidratação, tênis, lesões, nutrição, treino, provas ou descanso."
+
+
+def salvar_conversa(pergunta, resposta):
+
+    caminho = "C:/Users/User/Desktop/workspace/projeto1/conversas.json"
+
+    try:
+        with open(caminho, "r", encoding="utf-8") as arquivo:
+            conversas = json.load(arquivo)
+    except (FileNotFoundError, json.JSONDecodeError):
+        conversas = []
+
+    conversa = {
+        "pergunta": pergunta,
+        "resposta": resposta,
+        "data": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+
+    conversas.append(conversa)
+
+    with open(caminho, "w", encoding="utf-8") as arquivo:
+        json.dump(conversas, arquivo, indent=4, ensure_ascii=False)
+
+
+def mostrar_conversas():
+
+    caminho = "C:/Users/User/Desktop/workspace/projeto1/conversas.json"
+
+    try:
+        with open(caminho, "r", encoding="utf-8") as arquivo:
+            conversas = json.load(arquivo)
+    except (FileNotFoundError, json.JSONDecodeError):
+        conversas = []
+
+    if not conversas:
+        print("Nenhuma conversa registrada.")
+        return
+
+    print("Histórico de conversas:")
+
+    for conversa in conversas:
+        print("-------------------")
+        print("Data:", conversa["data"])
+        print("Pergunta:", conversa["pergunta"])
+        print("Resposta:", conversa["resposta"])
+
+
+def processar_calculo_natural(mensagem):
+
+    distancia, tempo, pace = extrair_dados_corrida(mensagem)
+
+    if distancia and tempo:
+        pace_calc = tempo / distancia
+        salvar_corrida(distancia, tempo, pace_calc)
+        return f"Corrida registrada! Distância: {distancia} km | Tempo: {tempo} min | Pace: {formatar_pace(pace_calc)} min/km"
+
+    if distancia and pace:
+        tempo_calc = pace * distancia
+        horas = int(tempo_calc // 60)
+        minutos = int(tempo_calc % 60)
+        if horas > 0:
+            return f"Com pace de {formatar_pace(pace)} e distância de {distancia} km, você termina em {horas}h{minutos:02d}min."
+        return f"Com pace de {formatar_pace(pace)} e distância de {distancia} km, você termina em {minutos} minutos."
+
+    if tempo and pace:
+        distancia_calc = tempo / pace
+        return f"Com pace de {formatar_pace(pace)} em {tempo} min, você corre {distancia_calc:.1f} km."
+
+    if distancia:
+        return f"Distância detectada: {distancia} km. Informe também o tempo ou pace."
+
+    if tempo:
+        return f"Tempo detectado: {tempo} min. Informe também a distância."
+
+    return "Não consegui extrair os dados. Tente algo como: 'corri 5km em 25min' ou '5km pace 5'."
+
+
+def processar_comando(mensagem):
+
+    msg = mensagem.lower()
+
+    with open(
+        "C:/Users/User/Desktop/workspace/projeto1/historico.json",
+        "r"
+    ) as arquivo:
+        historico = json.load(arquivo)
+
+    if not historico:
+        return "Nenhuma corrida registrada ainda."
+
+    if "pace médio" in msg or "pace medio" in msg:
+        total_pace = 0
+        for corrida in historico:
+            partes = corrida["pace"].split(":")
+            total_pace += int(partes[0]) + int(partes[1]) / 60
+        media = total_pace / len(historico)
+        return f"Seu pace médio é {formatar_pace(media)} min/km ({len(historico)} corridas)."
+
+    if "melhor pace" in msg:
+        melhor = None
+        for corrida in historico:
+            partes = corrida["pace"].split(":")
+            pace_num = int(partes[0]) + int(partes[1]) / 60
+            if melhor is None or pace_num < melhor:
+                melhor = pace_num
+        return f"Seu melhor pace é {formatar_pace(melhor)} min/km."
+
+    if "pior pace" in msg:
+        pior = None
+        for corrida in historico:
+            partes = corrida["pace"].split(":")
+            pace_num = int(partes[0]) + int(partes[1]) / 60
+            if pior is None or pace_num > pior:
+                pior = pace_num
+        return f"Seu pace mais lento é {formatar_pace(pior)} min/km."
+
+    if "última corrida" in msg or "ultima corrida" in msg:
+        ultima = historico[-1]
+        return f"Última corrida: {ultima['distancia']} km em {ultima['tempo']} min (Pace: {ultima['pace']})."
+
+    if "quantas corridas" in msg:
+        return f"Você tem {len(historico)} corridas registradas."
+
+    return "Comando não reconhecido. Tente: 'pace médio', 'melhor pace', 'última corrida' ou 'quantas corridas'."
+
+
+def carregar_historico_recente():
+
+    caminho = "C:/Users/User/Desktop/workspace/projeto1/conversas.json"
+
+    try:
+        with open(caminho, "r", encoding="utf-8") as arquivo:
+            conversas = json.load(arquivo)
+        return conversas[-5:] if conversas else []
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+
+def configurar_ia():
+
+    config = carregar_config()
+    status = "ATIVADA" if config.get("ia_ativada", False) else "DESATIVADA"
+
+    print(f"\nConfiguração de IA (status atual: {status})")
+    print("1 - Ativar IA")
+    print("2 - Desativar IA")
+    print("3 - Voltar")
+
+    opcao = input("Opção: ")
+
+    if opcao == "1":
+        config["ia_ativada"] = True
+        salvar_config(config)
+        ai = AIClient()
+        if ai.disponivel():
+            print("IA ativada com sucesso!")
+        else:
+            print("IA ativada. Aviso: verifique se o Ollama está rodando (ollama serve).")
+    elif opcao == "2":
+        config["ia_ativada"] = False
+        salvar_config(config)
+        print("IA desativada.")
+    else:
+        print("Voltando ao menu.")
+
+
 def chatbot():
 
     print("=====================================")
@@ -165,13 +345,59 @@ def chatbot():
     print("• Tirar dúvidas sobre corrida")
     print("• Aprender sobre treinamento")
     print("• Aprender sobre nutrição")
-    print("• Comparar resultados")
-    print("• Analisar suas corridas")
+    print("• Registrar corridas por texto natural")
+    print("• Consultar estatísticas")
 
-    pergunta = input("Faça sua pergunta: ")
+    ai = AIClient()
 
-    print("Você perguntou:")
-    print(pergunta)
+    if ai.ia_ativada():
+        print("\n[IA ativada - respostas inteligentes habilitadas]")
+    else:
+        print("\n[Modo local - respostas baseadas na base de conhecimento]")
+
+    print("\nEscolha o modo de histórico:")
+    print("1 - Normal (sem salvar histórico)")
+    print("2 - Com histórico (salva perguntas e respostas)")
+
+    modo = input("Modo: ")
+    salvar = modo == "2"
+
+    if salvar:
+        print("Histórico ativado.")
+    else:
+        print("Modo normal.")
+
+    print("Digite 'sair' para voltar ao menu principal.\n")
+
+    while True:
+
+        pergunta = input("Você: ")
+
+        if pergunta.lower().strip() == "sair":
+            print("Saindo do chatbot...")
+            break
+
+        tipo = classificar(pergunta)
+
+        if tipo == "calculo":
+            resposta = processar_calculo_natural(pergunta)
+        elif tipo == "comando":
+            resposta = processar_comando(pergunta)
+        elif tipo == "conhecimento":
+            resposta = buscar_resposta(pergunta)
+        elif ai.ia_ativada():
+            print("Pensando...")
+            historico_recente = carregar_historico_recente() if salvar else []
+            resposta_ia = ai.responder(pergunta, historico_recente)
+            resposta = resposta_ia if resposta_ia else buscar_resposta(
+                pergunta)
+        else:
+            resposta = buscar_resposta(pergunta)
+
+        print(f"Bot: {resposta}\n")
+
+        if salvar:
+            salvar_conversa(pergunta, resposta)
 
 
 while True:
@@ -180,7 +406,9 @@ while True:
     print("2 - Calcular tempo")
     print("3 - Mostrar Histórico")
     print("4 - Chatbot de corrida")
-    print("5 - Sair")
+    print("5 - Histórico de conversas")
+    print("6 - Configurar IA")
+    print("7 - Sair")
 
     opcao = input("Digite uma opção: ")
 
@@ -197,6 +425,12 @@ while True:
         chatbot()
 
     elif opcao == "5":
+        mostrar_conversas()
+
+    elif opcao == "6":
+        configurar_ia()
+
+    elif opcao == "7":
         print("Programa encerrado")
         break
 
