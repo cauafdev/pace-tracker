@@ -5,7 +5,113 @@
             "ritmo"
         ],
         "respostas": [
-            "Pace é o tempo necessário para percorrer um quilômetro."
+            "Pace é o tempo necessário para percorrer um quilômetro. Por exemplo, um pace de 5:00 significa que você leva 5 minutos para correr 1 km."
+        ]
+    },
+    "aquecimento": {
+        "palavras_chave": [
+            "aquecimento",
+            "aquecer",
+            "antes de correr"
+        ],
+        "respostas": [
+            "O aquecimento antes de correr é fundamental. Faça de 5 a 10 minutos de caminhada leve, seguida de alongamentos dinâmicos como elevação de joelhos e rotação de quadril."
+        ]
+    },
+    "hidratacao": {
+        "palavras_chave": [
+            "hidratação",
+            "hidratar",
+            "água",
+            "beber"
+        ],
+        "respostas": [
+            "Mantenha-se hidratado antes, durante e depois da corrida. Beba cerca de 500ml de água 2 horas antes e pequenos goles a cada 15-20 minutos durante corridas longas."
+        ]
+    },
+    "tenis": {
+        "palavras_chave": [
+            "tênis",
+            "tenis",
+            "calçado",
+            "sapato"
+        ],
+        "respostas": [
+            "Escolha um tênis adequado para corrida com bom amortecimento. Troque seu tênis a cada 500-800 km de uso. Visite uma loja especializada para análise de pisada."
+        ]
+    },
+    "lesao": {
+        "palavras_chave": [
+            "lesão",
+            "lesao",
+            "dor",
+            "machucado",
+            "contusão"
+        ],
+        "respostas": [
+            "Para evitar lesões, aumente o volume de treino gradualmente (máximo 10% por semana), faça fortalecimento muscular e respeite os dias de descanso."
+        ]
+    },
+    "nutricao": {
+        "palavras_chave": [
+            "nutrição",
+            "nutricao",
+            "alimentação",
+            "comer",
+            "dieta",
+            "comida"
+        ],
+        "respostas": [
+            "Para corredores, é importante consumir carboidratos complexos antes da corrida, proteínas para recuperação muscular e manter uma dieta equilibrada com frutas e vegetais."
+        ]
+    },
+    "treino": {
+        "palavras_chave": [
+            "treino",
+            "treinamento",
+            "treinar",
+            "plano"
+        ],
+        "respostas": [
+            "Um bom plano de treino inclui: corridas leves, treinos intervalados (tiros), longões semanais e dias de descanso. Alterne entre dias fáceis e difíceis."
+        ]
+    },
+    "iniciante": {
+        "palavras_chave": [
+            "iniciante",
+            "começar",
+            "comecar",
+            "primeiro",
+            "nunca corri"
+        ],
+        "respostas": [
+            "Se você está começando, alterne caminhada e corrida. Comece com 1 minuto correndo e 2 caminhando. Aumente gradualmente. Corra 3 vezes por semana com descanso entre os dias."
+        ]
+    },
+    "prova": {
+        "palavras_chave": [
+            "prova",
+            "corrida de rua",
+            "maratona",
+            "meia maratona",
+            "5k",
+            "10k",
+            "competição"
+        ],
+        "respostas": [
+            "Para sua primeira prova, treine pelo menos 8 semanas. Distâncias populares: 5K (iniciantes), 10K (intermediários), Meia Maratona (21km) e Maratona (42km). Não estreie nada no dia da prova!"
+        ]
+    },
+    "descanso": {
+        "palavras_chave": [
+            "descanso",
+            "descansar",
+            "recuperação",
+            "folga",
+            "overtraining"
+        ],
+        "respostas": [
+            "O descanso é tão importante quanto o treino. Descanse pelo menos 1-2 dias por semana. Sinais de overtraining incluem cansaço excessivo, dores persistentes e queda no desempenho."
         ]
     }
 }
