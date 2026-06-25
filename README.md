@@ -1,8 +1,8 @@
 # 🏃 Pace Tracker
 
-**Aplicação web para análise de desempenho em corrida** — dashboard analítico, insights automáticos e chatbot com IA.
+**Running performance analysis web app** — analytics dashboard, automatic insights and AI-powered chatbot.
 
-Construída com Python, Streamlit, Pandas e Plotly.
+Built with Python, Streamlit, Pandas and Plotly.
 
 <br>
 
@@ -10,173 +10,173 @@ Construída com Python, Streamlit, Pandas e Plotly.
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.58-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
 ![Plotly](https://img.shields.io/badge/Plotly-6.8-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-3.0-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-00D4AA?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-In%20Development-00D4AA?style=for-the-badge)
 
 ---
 
-## Sobre o Projeto
+## About
 
-O Pace Tracker nasceu como uma calculadora de pace no terminal e evoluiu para uma aplicação web completa com dashboard analítico, gráficos interativos e inteligência artificial.
+Pace Tracker started as a simple terminal pace calculator and evolved into a full-featured web application with an analytics dashboard, interactive charts and artificial intelligence.
 
-O projeto demonstra na prática:
-- **Engenharia de software** — arquitetura modular, separação de responsabilidades, refatoração progressiva
-- **Análise de dados** — agregações temporais, cálculo de tendências, geração de insights automáticos
-- **Visualização de dados** — gráficos interativos com Plotly, KPIs dinâmicos, design responsivo
-- **Desenvolvimento web** — interface moderna com Streamlit, UX/UI profissional, dark theme customizado
-- **Integração com IA** — chatbot híbrido com Ollama (LLM local) + base de conhecimento
-
----
-
-## Funcionalidades
-
-### 📊 Dashboard Analítico
-- KPIs em tempo real: distância total, corridas, pace médio, melhor pace, sequência de treinos
-- 4 gráficos interativos: quilometragem semanal, evolução do pace, acumulado e frequência
-- Tabela das últimas corridas
-
-### ➕ Registro de Treinos
-- Formulário com data, distância, tempo, tipo de treino e notas
-- **Entrada por linguagem natural:** `corri 10km em 50min`, `5km pace 5:30`, `21km em 1h45`
-- Calculadora rápida de pace e tempo estimado
-- Pace calculado automaticamente ao registrar
-
-### 📈 Análise de Desempenho
-- Evolução de quilometragem (semanal, mensal, acumulada)
-- Evolução do pace com linha de tendência
-- Scatter plot pace vs distância
-- Distribuição de distâncias e tipos de treino
-- Tabelas de resumo semanal e mensal
-- Ranking dos melhores desempenhos
-
-### 💡 Insights Automáticos
-- Variação de volume semanal (% de mudança)
-- Tendência do pace (melhora ou queda)
-- Dia favorito de treino
-- Maior sequência de treinos consecutivos
-- Melhor mês registrado
-- Recomendações personalizadas baseadas nos dados
-
-### 🤖 Chatbot com IA
-- Router inteligente que classifica mensagens via regex
-- Base de conhecimento local com 10 tópicos de corrida
-- Integração com Ollama (LLM local, 100% offline)
-- Registro de corridas e consulta de estatísticas via chat
-
-### 📚 Conteúdo Educacional
-- Base de conhecimento sobre corrida
-- 10 dicas detalhadas para corredores
-- Vídeos incorporados sobre técnica, treino e nutrição
+This project demonstrates in practice:
+- **Software engineering** — modular architecture, separation of concerns, progressive refactoring
+- **Data analysis** — time-based aggregations, trend calculations, automatic insight generation
+- **Data visualization** — interactive Plotly charts, dynamic KPIs, responsive design
+- **Web development** — modern Streamlit interface, professional UI/UX, custom dark theme
+- **AI integration** — hybrid chatbot with Ollama (local LLM) + knowledge base
 
 ---
 
-## Arquitetura
+## Features
+
+### 📊 Analytics Dashboard
+- Real-time KPIs: total distance, runs, average pace, best pace, training streak
+- 4 interactive charts: weekly mileage, pace evolution, cumulative distance and frequency
+- Recent runs table
+
+### ➕ Run Logging
+- Form with date, distance, time, run type and notes
+- **Natural language input:** `corri 10km em 50min`, `5km pace 5:30`, `21km em 1h45`
+- Quick pace and time calculator
+- Auto-calculated pace on submit
+
+### 📈 Performance Analysis
+- Mileage evolution (weekly, monthly, cumulative)
+- Pace evolution with trend line
+- Pace vs distance scatter plot
+- Distance and run type distribution
+- Weekly and monthly summary tables
+- Best performances ranking
+
+### 💡 Automatic Insights
+- Weekly volume variation (% change)
+- Pace trend (improvement or decline)
+- Favorite training day
+- Longest consecutive training streak
+- Best recorded month
+- Personalized recommendations based on data
+
+### 🤖 AI Chatbot
+- Intelligent router that classifies messages via regex
+- Local knowledge base with 10 running topics
+- Ollama integration (local LLM, 100% offline)
+- Run logging and stats queries via chat
+
+### 📚 Educational Content
+- Running knowledge base
+- 10 detailed tips for runners
+- Embedded videos on technique, training and nutrition
+
+---
+
+## Architecture
 
 ```
 pace-tracker/
 │
-├── app.py                      # Aplicação Streamlit (interface web)
+├── app.py                      # Streamlit web application
 │
 ├── utils/
-│   ├── data_manager.py         # I/O de dados, persistência JSON
-│   ├── analytics.py            # Motor de análise, métricas e insights
-│   └── charts.py               # Gráficos Plotly (9 tipos)
+│   ├── data_manager.py         # Data I/O, JSON persistence
+│   ├── analytics.py            # Analytics engine, metrics and insights
+│   └── charts.py               # Plotly charts (9 types)
 │
-├── router.py                   # Classificador de mensagens (regex)
-├── ai_client.py                # Cliente Ollama (IA local)
+├── router.py                   # Message classifier (regex)
+├── ai_client.py                # Ollama client (local AI)
 │
 ├── .streamlit/
-│   └── config.toml             # Tema dark customizado
+│   └── config.toml             # Custom dark theme
 │
-├── conhecimento.json           # Base de conhecimento (10 tópicos)
-├── historico.json              # Registro de corridas
-├── conversas.json              # Histórico de conversas do chatbot
-├── config.json                 # Configuração da IA
+├── conhecimento.json           # Knowledge base (10 topics)
+├── historico.json              # Run history
+├── conversas.json              # Chatbot conversation log
+├── config.json                 # AI configuration
 │
 └── requirements.txt
 ```
 
-**Fluxo de dados:**
+**Data flow:**
 
 ```
-Usuário → Streamlit UI → data_manager.py → historico.json
-                              ↓
-                        analytics.py → métricas, tendências, insights
-                              ↓
-                         charts.py → gráficos Plotly
+User → Streamlit UI → data_manager.py → historico.json
+                            ↓
+                      analytics.py → metrics, trends, insights
+                            ↓
+                       charts.py → Plotly charts
 ```
 
-**Classificação de mensagens (chatbot):**
+**Message classification (chatbot):**
 
 ```
-Mensagem do usuário
-        │
-    [router.py] ── classifica a intenção
-        │
-   ┌────┼───────────┼────────────┼───────────┐
-   │              │            │              │
-Cálculo       Comando    Conhecimento    Conversa
-(regex)       (stats)      (JSON)       (Ollama IA)
-   │              │            │              │
-   └────────── Resposta ao usuário ──────────┘
+User message
+      │
+  [router.py] ── classifies intent
+      │
+ ┌────┼───────────┼────────────┼───────────┐
+ │              │            │              │
+Calculation  Command    Knowledge     Conversation
+ (regex)     (stats)     (JSON)       (Ollama AI)
+ │              │            │              │
+ └────────── Response to user ─────────────┘
 ```
 
 ---
 
-## Como Executar
+## Getting Started
 
 ```bash
-# Clonar o repositório
+# Clone the repository
 git clone https://github.com/cauafdev/pace-tracker.git
 cd pace-tracker
 
-# Instalar dependências
+# Install dependencies
 pip install -r requirements.txt
 
-# Iniciar a aplicação
+# Start the application
 streamlit run app.py
 ```
 
-A aplicação abre automaticamente em `http://localhost:8501`.
+The app opens automatically at `http://localhost:8501`.
 
-**IA local (opcional):**
+**Local AI (optional):**
 
 ```bash
-# Instalar Ollama → https://ollama.ai
+# Install Ollama → https://ollama.ai
 ollama pull llama3.2:1b
 
-# Ativar no chatbot pelo toggle de IA dentro do app
+# Enable AI via the toggle in the chatbot page
 ```
 
 ---
 
-## Evolução do Projeto
+## Project Evolution
 
-| Fase | Descrição | Stack |
-|------|-----------|-------|
-| **v1.0** | Calculadora de pace no terminal | Python, input/print |
-| **v1.1** | Router inteligente + classificação de mensagens | Python, Regex |
-| **v1.2** | Chatbot com base de conhecimento JSON | Python, JSON |
-| **v1.3** | Integração com IA local via Ollama | Python, Ollama API |
-| **v2.0** | **Aplicação web completa com Streamlit** | Streamlit, Pandas, Plotly |
+| Phase | Description | Stack |
+|-------|-------------|-------|
+| **v1.0** | Terminal pace calculator | Python, input/print |
+| **v1.1** | Intelligent router + message classification | Python, Regex |
+| **v1.2** | Chatbot with JSON knowledge base | Python, JSON |
+| **v1.3** | Local AI integration via Ollama | Python, Ollama API |
+| **v2.0** | **Full web application with Streamlit** | Streamlit, Pandas, Plotly |
 
-> O histórico de commits mostra a progressão real do projeto.
-
----
-
-## Tecnologias
-
-| Tecnologia | Uso |
-|-----------|-----|
-| **Python** | Lógica de negócio, análise de dados |
-| **Streamlit** | Interface web, componentes interativos |
-| **Pandas** | Manipulação e agregação de dados |
-| **Plotly** | Gráficos interativos |
-| **JSON** | Persistência de dados |
-| **Regex** | Parsing de linguagem natural |
-| **Ollama** | IA local (LLM offline, opcional) |
+> The commit history shows the real progression of the project.
 
 ---
 
-## Autor
+## Tech Stack
+
+| Technology | Usage |
+|-----------|-------|
+| **Python** | Business logic, data analysis |
+| **Streamlit** | Web interface, interactive components |
+| **Pandas** | Data manipulation and aggregation |
+| **Plotly** | Interactive charts |
+| **JSON** | Data persistence |
+| **Regex** | Natural language parsing |
+| **Ollama** | Local AI (offline LLM, optional) |
+
+---
+
+## Author
 
 **Cauã F.** — [@cauafdev](https://github.com/cauafdev)
