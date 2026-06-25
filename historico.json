@@ -1,66 +1,194 @@
 [
     {
-        "distancia": 10.0,
-        "tempo": 50.0,
-        "pace": "5:00",
-        "data": "2026-06-03",
-        "tipo": "Treino",
-        "notas": ""
+        "distancia": 5.0,
+        "tempo": 32.5,
+        "pace": "6:30",
+        "data": "2026-05-05",
+        "tipo": "Treino Leve",
+        "notas": "Primeiro treino da semana, ritmo confortável"
     },
     {
-        "distancia": 10.0,
-        "tempo": 100.0,
-        "pace": "10:00",
-        "data": "2026-06-06",
-        "tipo": "Treino",
-        "notas": ""
+        "distancia": 3.0,
+        "tempo": 16.5,
+        "pace": "5:30",
+        "data": "2026-05-07",
+        "tipo": "Intervalado",
+        "notas": "6x400m com recuperação de 1min"
     },
     {
-        "distancia": 10.0,
-        "tempo": 50.0,
-        "pace": "5:00",
-        "data": "2026-06-09",
-        "tipo": "Treino",
-        "notas": ""
-    },
-    {
-        "distancia": 1.0,
-        "tempo": 1.0,
-        "pace": "1:00",
-        "data": "2026-06-12",
-        "tipo": "Treino",
-        "notas": ""
-    },
-    {
-        "distancia": 20.0,
-        "tempo": 200.0,
-        "pace": "10:00",
-        "data": "2026-06-15",
-        "tipo": "Treino",
-        "notas": ""
-    },
-    {
-        "distancia": 10.0,
-        "tempo": 50.0,
-        "pace": "5:00",
-        "data": "2026-06-18",
-        "tipo": "Treino",
-        "notas": ""
-    },
-    {
-        "distancia": 10.0,
-        "tempo": 5.0,
-        "pace": "0:30",
-        "data": "2026-06-21",
-        "tipo": "Treino",
-        "notas": ""
+        "distancia": 8.0,
+        "tempo": 48.0,
+        "pace": "6:00",
+        "data": "2026-05-10",
+        "tipo": "Longão",
+        "notas": "Ritmo constante, boa hidratação"
     },
     {
         "distancia": 5.0,
-        "tempo": 25,
-        "pace": "5:00",
-        "data": "2026-06-24",
+        "tempo": 30.0,
+        "pace": "6:00",
+        "data": "2026-05-12",
         "tipo": "Treino",
         "notas": ""
+    },
+    {
+        "distancia": 4.0,
+        "tempo": 25.6,
+        "pace": "6:24",
+        "data": "2026-05-14",
+        "tipo": "Recuperação",
+        "notas": "Pernas pesadas do longão"
+    },
+    {
+        "distancia": 6.0,
+        "tempo": 34.2,
+        "pace": "5:42",
+        "data": "2026-05-17",
+        "tipo": "Treino",
+        "notas": "Senti evolução no ritmo"
+    },
+    {
+        "distancia": 3.0,
+        "tempo": 15.0,
+        "pace": "5:00",
+        "data": "2026-05-19",
+        "tipo": "Tiro",
+        "notas": "Teste de pace em ritmo forte"
+    },
+    {
+        "distancia": 10.0,
+        "tempo": 58.0,
+        "pace": "5:48",
+        "data": "2026-05-21",
+        "tipo": "Longão",
+        "notas": "Maior distância até agora"
+    },
+    {
+        "distancia": 5.0,
+        "tempo": 28.5,
+        "pace": "5:42",
+        "data": "2026-05-24",
+        "tipo": "Treino",
+        "notas": ""
+    },
+    {
+        "distancia": 4.0,
+        "tempo": 24.8,
+        "pace": "6:12",
+        "data": "2026-05-26",
+        "tipo": "Recuperação",
+        "notas": "Corrida leve pós longão"
+    },
+    {
+        "distancia": 6.0,
+        "tempo": 33.0,
+        "pace": "5:30",
+        "data": "2026-05-28",
+        "tipo": "Treino",
+        "notas": "Ritmo progressivo, últimos 2km mais fortes"
+    },
+    {
+        "distancia": 3.5,
+        "tempo": 17.15,
+        "pace": "4:54",
+        "data": "2026-05-30",
+        "tipo": "Intervalado",
+        "notas": "8x200m tiros curtos"
+    },
+    {
+        "distancia": 12.0,
+        "tempo": 66.0,
+        "pace": "5:30",
+        "data": "2026-06-01",
+        "tipo": "Longão",
+        "notas": "Novo recorde de distância, mantive ritmo"
+    },
+    {
+        "distancia": 5.0,
+        "tempo": 27.5,
+        "pace": "5:30",
+        "data": "2026-06-03",
+        "tipo": "Treino",
+        "notas": "Pace consistente"
+    },
+    {
+        "distancia": 4.0,
+        "tempo": 23.2,
+        "pace": "5:48",
+        "data": "2026-06-05",
+        "tipo": "Treino Leve",
+        "notas": ""
+    },
+    {
+        "distancia": 3.0,
+        "tempo": 14.4,
+        "pace": "4:48",
+        "data": "2026-06-07",
+        "tipo": "Tiro",
+        "notas": "Melhor pace registrado"
+    },
+    {
+        "distancia": 7.0,
+        "tempo": 38.5,
+        "pace": "5:30",
+        "data": "2026-06-09",
+        "tipo": "Treino",
+        "notas": "Corrida no parque, clima bom"
+    },
+    {
+        "distancia": 5.0,
+        "tempo": 30.5,
+        "pace": "6:06",
+        "data": "2026-06-11",
+        "tipo": "Recuperação",
+        "notas": "Regenerativo"
+    },
+    {
+        "distancia": 15.0,
+        "tempo": 82.5,
+        "pace": "5:30",
+        "data": "2026-06-14",
+        "tipo": "Longão",
+        "notas": "Simulado de prova, abasteci no km 10"
+    },
+    {
+        "distancia": 4.0,
+        "tempo": 24.0,
+        "pace": "6:00",
+        "data": "2026-06-16",
+        "tipo": "Recuperação",
+        "notas": "Pernas cansadas do longão de 15km"
+    },
+    {
+        "distancia": 6.0,
+        "tempo": 31.2,
+        "pace": "5:12",
+        "data": "2026-06-18",
+        "tipo": "Treino",
+        "notas": "Ritmo forte, boa sensação"
+    },
+    {
+        "distancia": 3.0,
+        "tempo": 14.1,
+        "pace": "4:42",
+        "data": "2026-06-20",
+        "tipo": "Tiro",
+        "notas": "Novo recorde de pace!"
+    },
+    {
+        "distancia": 8.0,
+        "tempo": 42.4,
+        "pace": "5:18",
+        "data": "2026-06-22",
+        "tipo": "Treino",
+        "notas": "Evolução clara no ritmo"
+    },
+    {
+        "distancia": 5.0,
+        "tempo": 26.0,
+        "pace": "5:12",
+        "data": "2026-06-24",
+        "tipo": "Treino",
+        "notas": "Fechando a semana forte"
     }
 ]
