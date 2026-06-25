@@ -12,6 +12,10 @@ Built with Python, Streamlit, Pandas and Plotly.
 ![Pandas](https://img.shields.io/badge/Pandas-3.0-150458?style=for-the-badge&logo=pandas&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-In%20Development-00D4AA?style=for-the-badge)
 
+<br>
+
+### [▶ Open Live Demo](https://cauafdev-pace-tracker.streamlit.app)
+
 ---
 
 ## About

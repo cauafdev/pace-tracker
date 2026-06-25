@@ -60,8 +60,11 @@ def carregar_historico():
 
 def salvar_historico(historico):
     caminho = _caminho("historico.json")
-    with open(caminho, "w", encoding="utf-8") as f:
-        json.dump(historico, f, indent=4, ensure_ascii=False)
+    try:
+        with open(caminho, "w", encoding="utf-8") as f:
+            json.dump(historico, f, indent=4, ensure_ascii=False)
+    except OSError:
+        pass
 
 
 def adicionar_corrida(distancia, tempo, pace_valor, data=None, tipo="Treino", notas=""):
@@ -114,8 +117,11 @@ def salvar_conversa(pergunta, resposta):
         "resposta": resposta,
         "data": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     })
-    with open(caminho, "w", encoding="utf-8") as f:
-        json.dump(conversas, f, indent=4, ensure_ascii=False)
+    try:
+        with open(caminho, "w", encoding="utf-8") as f:
+            json.dump(conversas, f, indent=4, ensure_ascii=False)
+    except OSError:
+        pass
 
 
 def carregar_config():
@@ -129,5 +135,8 @@ def carregar_config():
 
 def salvar_config(config):
     caminho = _caminho("config.json")
-    with open(caminho, "w", encoding="utf-8") as f:
-        json.dump(config, f, indent=4, ensure_ascii=False)
+    try:
+        with open(caminho, "w", encoding="utf-8") as f:
+            json.dump(config, f, indent=4, ensure_ascii=False)
+    except OSError:
+        pass
