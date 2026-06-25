@@ -1,9 +1,10 @@
 import json
+import os
 import urllib.request
 import urllib.error
 
-
-CAMINHO_CONFIG = "C:/Users/User/Desktop/workspace/projeto1/config.json"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CAMINHO_CONFIG = os.path.join(BASE_DIR, "config.json")
 
 SYSTEM_PROMPT = (
     "Você é um assistente amigável dentro de um app de corrida. "
@@ -58,13 +59,13 @@ class AIClient:
         body = json.dumps({
             "model": self.config.get("modelo", "llama3.2:1b"),
             "messages": messages,
-            "stream": False
+            "stream": False,
         }).encode("utf-8")
 
         req = urllib.request.Request(
             self.url,
             data=body,
-            headers={"Content-Type": "application/json"}
+            headers={"Content-Type": "application/json"},
         )
 
         try:

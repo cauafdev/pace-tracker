@@ -2,36 +2,65 @@
     {
         "distancia": 10.0,
         "tempo": 50.0,
-        "pace": "5:00"
+        "pace": "5:00",
+        "data": "2026-06-03",
+        "tipo": "Treino",
+        "notas": ""
     },
     {
         "distancia": 10.0,
         "tempo": 100.0,
-        "pace": "10:00"
+        "pace": "10:00",
+        "data": "2026-06-06",
+        "tipo": "Treino",
+        "notas": ""
     },
     {
         "distancia": 10.0,
         "tempo": 50.0,
-        "pace": "5:00"
+        "pace": "5:00",
+        "data": "2026-06-09",
+        "tipo": "Treino",
+        "notas": ""
     },
     {
         "distancia": 1.0,
         "tempo": 1.0,
-        "pace": "1:00"
+        "pace": "1:00",
+        "data": "2026-06-12",
+        "tipo": "Treino",
+        "notas": ""
     },
     {
         "distancia": 20.0,
         "tempo": 200.0,
-        "pace": "10:00"
+        "pace": "10:00",
+        "data": "2026-06-15",
+        "tipo": "Treino",
+        "notas": ""
     },
     {
         "distancia": 10.0,
         "tempo": 50.0,
-        "pace": "5:00"
+        "pace": "5:00",
+        "data": "2026-06-18",
+        "tipo": "Treino",
+        "notas": ""
     },
     {
         "distancia": 10.0,
         "tempo": 5.0,
-        "pace": "0:30"
+        "pace": "0:30",
+        "data": "2026-06-21",
+        "tipo": "Treino",
+        "notas": ""
+    },
+    {
+        "distancia": 5.0,
+        "tempo": 25,
+        "pace": "5:00",
+        "data": "2026-06-24",
+        "tipo": "Treino",
+        "notas": ""
     }
 ]

@@ -1,100 +1,182 @@
-# Pace Tracker - Intelligent Running Chatbot
+# 🏃 Pace Tracker
 
-Terminal-based running assistant that combines a **pace calculator**, **knowledge base** and **local AI** to help runners in their daily routine.
+**Aplicação web para análise de desempenho em corrida** — dashboard analítico, insights automáticos e chatbot com IA.
 
-## Features
+Construída com Python, Streamlit, Pandas e Plotly.
 
-**Running calculator**
-- Calculates pace from distance and time
-- Calculates estimated time from pace and distance
-- Accepts natural language input (e.g.: `corri 10km em 50min`)
+<br>
 
-**Hybrid chatbot with AI**
-- Intelligent router that automatically classifies user messages
-- Local responses for running topics (training, nutrition, injuries, warm-up, etc)
-- Local AI via Ollama for open conversations and complex questions
-- Automatic fallback when AI is not available
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.58-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![Plotly](https://img.shields.io/badge/Plotly-6.8-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-3.0-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-00D4AA?style=for-the-badge)
 
-**History and persistence**
-- Saves runs with distance, time and pace in JSON
-- Conversation history with date and time
-- Statistics queries: average pace, best pace, last run
-- Mode with/without history (user's choice)
+---
 
-## Architecture
+## Sobre o Projeto
+
+O Pace Tracker nasceu como uma calculadora de pace no terminal e evoluiu para uma aplicação web completa com dashboard analítico, gráficos interativos e inteligência artificial.
+
+O projeto demonstra na prática:
+- **Engenharia de software** — arquitetura modular, separação de responsabilidades, refatoração progressiva
+- **Análise de dados** — agregações temporais, cálculo de tendências, geração de insights automáticos
+- **Visualização de dados** — gráficos interativos com Plotly, KPIs dinâmicos, design responsivo
+- **Desenvolvimento web** — interface moderna com Streamlit, UX/UI profissional, dark theme customizado
+- **Integração com IA** — chatbot híbrido com Ollama (LLM local) + base de conhecimento
+
+---
+
+## Funcionalidades
+
+### 📊 Dashboard Analítico
+- KPIs em tempo real: distância total, corridas, pace médio, melhor pace, sequência de treinos
+- 4 gráficos interativos: quilometragem semanal, evolução do pace, acumulado e frequência
+- Tabela das últimas corridas
+
+### ➕ Registro de Treinos
+- Formulário com data, distância, tempo, tipo de treino e notas
+- **Entrada por linguagem natural:** `corri 10km em 50min`, `5km pace 5:30`, `21km em 1h45`
+- Calculadora rápida de pace e tempo estimado
+- Pace calculado automaticamente ao registrar
+
+### 📈 Análise de Desempenho
+- Evolução de quilometragem (semanal, mensal, acumulada)
+- Evolução do pace com linha de tendência
+- Scatter plot pace vs distância
+- Distribuição de distâncias e tipos de treino
+- Tabelas de resumo semanal e mensal
+- Ranking dos melhores desempenhos
+
+### 💡 Insights Automáticos
+- Variação de volume semanal (% de mudança)
+- Tendência do pace (melhora ou queda)
+- Dia favorito de treino
+- Maior sequência de treinos consecutivos
+- Melhor mês registrado
+- Recomendações personalizadas baseadas nos dados
+
+### 🤖 Chatbot com IA
+- Router inteligente que classifica mensagens via regex
+- Base de conhecimento local com 10 tópicos de corrida
+- Integração com Ollama (LLM local, 100% offline)
+- Registro de corridas e consulta de estatísticas via chat
+
+### 📚 Conteúdo Educacional
+- Base de conhecimento sobre corrida
+- 10 dicas detalhadas para corredores
+- Vídeos incorporados sobre técnica, treino e nutrição
+
+---
+
+## Arquitetura
 
 ```
-User message
-      |
-  [Router] --- classifies intent
-      |
- .----|-----------|------------|-----------.
- |              |            |              |
-Calculation  Command    Knowledge     Conversation
- (regex)     (stats)     (JSON)      (Ollama AI)
- |              |            |              |
- '-------- Response to user  -------------'
+pace-tracker/
+│
+├── app.py                      # Aplicação Streamlit (interface web)
+│
+├── utils/
+│   ├── data_manager.py         # I/O de dados, persistência JSON
+│   ├── analytics.py            # Motor de análise, métricas e insights
+│   └── charts.py               # Gráficos Plotly (9 tipos)
+│
+├── router.py                   # Classificador de mensagens (regex)
+├── ai_client.py                # Cliente Ollama (IA local)
+│
+├── .streamlit/
+│   └── config.toml             # Tema dark customizado
+│
+├── conhecimento.json           # Base de conhecimento (10 tópicos)
+├── historico.json              # Registro de corridas
+├── conversas.json              # Histórico de conversas do chatbot
+├── config.json                 # Configuração da IA
+│
+└── requirements.txt
 ```
 
-| Module | Responsibility |
-|---|---|
-| `app.py` | Main application, menu, chatbot and handlers |
-| `router.py` | Message classification via regex and keywords |
-| `ai_client.py` | Integration with Ollama (local AI) |
-| `conhecimento.json` | Running knowledge base (10 topics) |
-| `historico.json` | User's running log |
-| `conversas.json` | Chatbot conversation history |
+**Fluxo de dados:**
 
-## How to use
+```
+Usuário → Streamlit UI → data_manager.py → historico.json
+                              ↓
+                        analytics.py → métricas, tendências, insights
+                              ↓
+                         charts.py → gráficos Plotly
+```
 
-**Requirements:** Python 3.10+
+**Classificação de mensagens (chatbot):**
+
+```
+Mensagem do usuário
+        │
+    [router.py] ── classifica a intenção
+        │
+   ┌────┼───────────┼────────────┼───────────┐
+   │              │            │              │
+Cálculo       Comando    Conhecimento    Conversa
+(regex)       (stats)      (JSON)       (Ollama IA)
+   │              │            │              │
+   └────────── Resposta ao usuário ──────────┘
+```
+
+---
+
+## Como Executar
 
 ```bash
-# Clone the repository
+# Clonar o repositório
 git clone https://github.com/cauafdev/pace-tracker.git
 cd pace-tracker
 
-# Run
-python app.py
+# Instalar dependências
+pip install -r requirements.txt
+
+# Iniciar a aplicação
+streamlit run app.py
 ```
 
-**To activate local AI (optional):**
+A aplicação abre automaticamente em `http://localhost:8501`.
+
+**IA local (opcional):**
 
 ```bash
-# Install Ollama (https://ollama.ai)
+# Instalar Ollama → https://ollama.ai
 ollama pull llama3.2:1b
 
-# In the app, option 6 > Activate AI
-python app.py
+# Ativar no chatbot pelo toggle de IA dentro do app
 ```
 
-## Usage examples
+---
 
-```
-> corri 10km em 50min
-Corrida registrada! Distancia: 10 km | Tempo: 50 min | Pace: 5:00 min/km
+## Evolução do Projeto
 
-> 5km pace 5 quanto tempo termino
-Com pace de 5:00 e distancia de 5 km, voce termina em 25 minutos.
+| Fase | Descrição | Stack |
+|------|-----------|-------|
+| **v1.0** | Calculadora de pace no terminal | Python, input/print |
+| **v1.1** | Router inteligente + classificação de mensagens | Python, Regex |
+| **v1.2** | Chatbot com base de conhecimento JSON | Python, JSON |
+| **v1.3** | Integração com IA local via Ollama | Python, Ollama API |
+| **v2.0** | **Aplicação web completa com Streamlit** | Streamlit, Pandas, Plotly |
 
-> qual meu pace medio?
-Seu pace medio e 5:30 min/km (8 corridas).
+> O histórico de commits mostra a progressão real do projeto.
 
-> o que e aquecimento?
-O aquecimento antes de correr e fundamental. Faca de 5 a 10 minutos de caminhada leve...
-```
+---
 
-## Technologies
+## Tecnologias
 
-- **Python** — core logic and CLI
-- **JSON** — data persistence (no external database)
-- **Ollama + Llama 3.2** — local AI, 100% offline
-- **Regex** — natural language parsing for running data extraction
+| Tecnologia | Uso |
+|-----------|-----|
+| **Python** | Lógica de negócio, análise de dados |
+| **Streamlit** | Interface web, componentes interativos |
+| **Pandas** | Manipulação e agregação de dados |
+| **Plotly** | Gráficos interativos |
+| **JSON** | Persistência de dados |
+| **Regex** | Parsing de linguagem natural |
+| **Ollama** | IA local (LLM offline, opcional) |
 
-## Learnings
+---
 
-- Hybrid architecture: combining local rules with AI
-- Intent router/classifier design
-- Data persistence with JSON
-- LLM integration via local REST API
-- User input handling with regex and validation
+## Autor
+
+**Cauã F.** — [@cauafdev](https://github.com/cauafdev)
