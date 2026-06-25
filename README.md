@@ -8,7 +8,7 @@ Built with Python, Streamlit, Pandas and Plotly.
 
 <div align="center">
 
-### 🔗 [**Open Live Demo →**](https://cauafdev-pace-tracker.streamlit.app)
+### 🔗 [**Open Live Demo →**](https://pace-tracker-2znkmjtmhpfwghywql9fq5.streamlit.app)
 
 *No installation needed — runs in your browser.*
 
